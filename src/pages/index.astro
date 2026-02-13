@@ -12,7 +12,6 @@ const categories = [
   { id: 'API 提供商', name: 'API 提供商', icon: '🔌' },
   { id: '聚合平台', name: '聚合平台', icon: '🔀' },
   { id: '开源社区', name: '开源社区', icon: '👥' },
-  { id: 'Product Hunt AI', name: 'Product Hunt AI', icon: '🚀' },
   { id: '其他', name: '其他', icon: '📦' },
 ]
 
@@ -44,7 +43,6 @@ const categoryCounts = {
         sitesByCategory[category.id].length > 0 && (
           <section id={`category-${category.id}`} class="category-section">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-1 h-6 rounded-full bg-[var(--color-accent)]"></div>
               <h2 class="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
                 <span>{category.icon}</span>
                 <span>{category.name}</span>

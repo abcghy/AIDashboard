@@ -161,10 +161,10 @@
   },
   {
     "id": "producthunt",
-    "name": "Product Hunt AI",
-    "url": "https://producthunt.com",
-    "description": "发现最新 AI 产品和工具，每日更新的产品社区",
-    "category": "Product Hunt AI",
+    "name": "Product Hunt",
+    "url": "https://www.producthunt.com/search?q=AI",
+    "description": "发现最新 AI 产品和工具的产品社区，AI 产品搜索页面",
+    "category": "其他",
     "models": []
   },
   {
