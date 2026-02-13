@@ -1,0 +1,218 @@
+[
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "url": "https://openai.com",
+    "description": "ChatGPT 和 GPT API 的官方提供商，AI 领域的领导者",
+    "category": "大模型官网",
+    "models": ["GPT-4o", "o1", "o3-mini", "GPT-4-turbo"]
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "url": "https://anthropic.com",
+    "description": "Claude AI 的开发商，专注于安全可靠的 AI 系统",
+    "category": "大模型官网",
+    "models": ["Claude 3.5 Sonnet", "Claude 3 Opus", "Claude 3 Haiku"]
+  },
+  {
+    "id": "google-ai",
+    "name": "Google AI",
+    "url": "https://ai.google",
+    "description": "Google 的人工智能研究与应用，Gemini 模型的开发者",
+    "category": "大模型官网",
+    "models": ["Gemini 2.0", "Gemini 1.5 Pro", "Gemini 1.5 Flash"]
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "url": "https://deepseek.com",
+    "description": "中国领先的 AI 公司，开源 DeepSeek 系列模型",
+    "category": "大模型官网",
+    "models": ["DeepSeek-V3", "DeepSeek-R1", "DeepSeek-Coder"]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "url": "https://mistral.ai",
+    "description": "欧洲 AI 独角兽，开源高效的大语言模型",
+    "category": "大模型官网",
+    "models": ["Mistral Large", "Mixtral 8x7B", "Mistral 7B"]
+  },
+  {
+    "id": "meta-ai",
+    "name": "Meta AI",
+    "url": "https://ai.meta.com",
+    "description": "Meta 的人工智能研究，Llama 系列开源模型",
+    "category": "大模型官网",
+    "models": ["Llama 3.3", "Llama 3.2", "Llama 3.1"]
+  },
+  {
+    "id": "baidu-ernie",
+    "name": "文心一言",
+    "url": "https://yiyan.baidu.com",
+    "description": "百度推出的大语言模型，中文能力出色",
+    "category": "大模型官网",
+    "models": ["文心一言 4.0", "ERNIE 4.0", "ERNIE 3.5"]
+  },
+  {
+    "id": "xai",
+    "name": "xAI",
+    "url": "https://x.ai",
+    "description": "Elon Musk 创立的 AI 公司，Grok 模型的开发者",
+    "category": "大模型官网",
+    "models": ["Grok 2", "Grok 1"]
+  },
+  {
+    "id": "openai-api",
+    "name": "OpenAI API",
+    "url": "https://platform.openai.com",
+    "description": "OpenAI 官方 API 平台，接入 GPT 系列模型",
+    "category": "API 提供商",
+    "models": ["GPT-4o", "GPT-4-turbo", "GPT-3.5-turbo"]
+  },
+  {
+    "id": "anthropic-api",
+    "name": "Anthropic API",
+    "url": "https://console.anthropic.com",
+    "description": "Claude API 官方平台，提供强大的对话和推理能力",
+    "category": "API 提供商",
+    "models": ["Claude 3.5 Sonnet", "Claude 3 Opus"]
+  },
+  {
+    "id": "google-ai-studio",
+    "name": "Google AI Studio",
+    "url": "https://aistudio.google.com",
+    "description": "Google 的 AI 开发平台，快速接入 Gemini 模型",
+    "category": "API 提供商",
+    "models": ["Gemini 2.0 Flash", "Gemini 1.5 Pro"]
+  },
+  {
+    "id": "deepseek-api",
+    "name": "DeepSeek API",
+    "url": "https://platform.deepseek.com",
+    "description": "DeepSeek 官方 API 平台，性价比极高",
+    "category": "API 提供商",
+    "models": ["DeepSeek-V3", "DeepSeek-R1"]
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "url": "https://openrouter.ai",
+    "description": "统一的 AI API 聚合平台，一个接口访问多种模型",
+    "category": "聚合平台",
+    "models": ["GPT-4o", "Claude 3.5", "Gemini 2.0", "DeepSeek-V3"]
+  },
+  {
+    "id": "together-ai",
+    "name": "Together AI",
+    "url": "https://together.ai",
+    "description": "开源模型云平台，提供高性能推理服务",
+    "category": "聚合平台",
+    "models": ["Llama 3.3", "Mixtral", "DeepSeek"]
+  },
+  {
+    "id": "replicate",
+    "name": "Replicate",
+    "url": "https://replicate.com",
+    "description": "云端运行开源 AI 模型，简单易用的 API",
+    "category": "聚合平台",
+    "models": ["Llama 3", "Flux", "SDXL"]
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "url": "https://groq.com",
+    "description": "超快推理速度的 AI 平台，LPU 芯片驱动",
+    "category": "聚合平台",
+    "models": ["Llama 3.3", "Mixtral", "Gemma 2"]
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "url": "https://huggingface.co",
+    "description": "AI 社区和平台，托管海量开源模型和数据集",
+    "category": "开源社区",
+    "models": ["Llama", "Mistral", "Stable Diffusion"]
+  },
+  {
+    "id": "kaggle",
+    "name": "Kaggle",
+    "url": "https://kaggle.com",
+    "description": "数据科学社区，提供模型、数据集和竞赛",
+    "category": "开源社区",
+    "models": ["Gemini", "Gemma"]
+  },
+  {
+    "id": "paperswithcode",
+    "name": "Papers With Code",
+    "url": "https://paperswithcode.com",
+    "description": "AI 论文与代码实现库，追踪最新研究进展",
+    "category": "开源社区",
+    "models": []
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "url": "https://github.com",
+    "description": "全球最大代码托管平台，海量 AI 开源项目",
+    "category": "开源社区",
+    "models": []
+  },
+  {
+    "id": "producthunt",
+    "name": "Product Hunt AI",
+    "url": "https://producthunt.com",
+    "description": "发现最新 AI 产品和工具，每日更新的产品社区",
+    "category": "Product Hunt AI",
+    "models": []
+  },
+  {
+    "id": "civitai",
+    "name": "Civitai",
+    "url": "https://civitai.com",
+    "description": "AI 艺术模型分享平台，Stable Diffusion 模型库",
+    "category": "其他",
+    "models": ["SDXL", "Flux", "LoRA"]
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "url": "https://midjourney.com",
+    "description": "顶级 AI 图像生成工具，艺术风格独特",
+    "category": "其他",
+    "models": ["Midjourney V6", "Midjourney V5"]
+  },
+  {
+    "id": "runway",
+    "name": "Runway",
+    "url": "https://runwayml.com",
+    "description": "AI 视频生成平台，Gen-2 等创意工具",
+    "category": "其他",
+    "models": ["Gen-3 Alpha", "Gen-2"]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "url": "https://perplexity.ai",
+    "description": "AI 搜索引擎，实时联网智能问答",
+    "category": "其他",
+    "models": ["Sonar", "Llama 3.1"]
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "url": "https://cursor.sh",
+    "description": "AI 驱动的代码编辑器，提升开发效率",
+    "category": "其他",
+    "models": ["Claude 3.5", "GPT-4o"]
+  },
+  {
+    "id": "v0",
+    "name": "v0 by Vercel",
+    "url": "https://v0.dev",
+    "description": "AI 生成前端 UI 组件，快速原型开发",
+    "category": "其他",
+    "models": []
+  }
+]

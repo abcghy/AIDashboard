@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Sidebar from '../components/Sidebar.astro'
+import SearchBar from '../components/SearchBar.astro'
+import SiteCard from '../components/SiteCard.astro'
+import sites from '../data/sites.json'
+
+const categoryCounts = {
+  all: sites.length,
+  '大模型官网': sites.filter(s => s.category === '大模型官网').length,
+  'API 提供商': sites.filter(s => s.category === 'API 提供商').length,
+  '聚合平台': sites.filter(s => s.category === '聚合平台').length,
+  '开源社区': sites.filter(s => s.category === '开源社区').length,
+  'Product Hunt AI': sites.filter(s => s.category === 'Product Hunt AI').length,
+  '其他': sites.filter(s => s.category === '其他').length,
+}
+---
+
+<Layout title="AI Dashboard - AI 网站导航">
+  <Sidebar activeCategory="all" />
+  
+  <main class="lg:ml-64 min-h-screen p-4 pt-16 lg:pt-4 lg:p-6">
+    <header class="mb-6">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <SearchBar value="" />
+        <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
+          <span id="site-count">{sites.length}</span>
+          <span>个网站</span>
+        </div>
+      </div>
+    </header>
+    
+    <div id="sites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {sites.map((site) => (
+        <div data-category={site.category} data-name={site.name} data-models={site.models.join(',')} data-description={site.description.toLowerCase()}>
+          <SiteCard site={site} />
+        </div>
+      ))}
+    </div>
+    
+    <div id="no-results" class="hidden text-center py-16">
+      <p class="text-[var(--color-text-secondary)] text-lg">没有找到匹配的网站</p>
+    </div>
+  </main>
+</Layout>
+
+<script define:vars={{ categoryCounts }}>
+  const sitesGrid = document.getElementById('sites-grid')
+  const noResults = document.getElementById('no-results')
+  const siteCount = document.getElementById('site-count')
+  const searchInput = document.getElementById('search-input')
+  const sidebarItems = document.querySelectorAll('.sidebar-item')
+  
+  let currentCategory = 'all'
+  let currentSearch = ''
+  
+  function filterSites() {
+    const cards = sitesGrid.querySelectorAll('[data-category]')
+    let visibleCount = 0
+    
+    cards.forEach(card => {
+      const category = card.dataset.category
+      const name = card.dataset.name.toLowerCase()
+      const models = card.dataset.models.toLowerCase()
+      const description = card.dataset.description
+      
+      const categoryMatch = currentCategory === 'all' || category === currentCategory
+      const searchMatch = currentSearch === '' || 
+        name.includes(currentSearch) || 
+        models.includes(currentSearch) ||
+        description.includes(currentSearch)
+      
+      if (categoryMatch && searchMatch) {
+        card.classList.remove('hidden')
+        visibleCount++
+      } else {
+        card.classList.add('hidden')
+      }
+    })
+    
+    siteCount.textContent = visibleCount
+    noResults.classList.toggle('hidden', visibleCount > 0)
+  }
+  
+  sidebarItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const category = item.dataset.category
+      currentCategory = category
+      
+      sidebarItems.forEach(i => {
+        i.classList.remove('bg-[var(--color-accent)]', 'text-white')
+        i.classList.add('text-[var(--color-text)]', 'hover:bg-[var(--color-surface)]')
+      })
+      
+      item.classList.add('bg-[var(--color-accent)]', 'text-white')
+      item.classList.remove('text-[var(--color-text)]', 'hover:bg-[var(--color-surface)]')
+      
+      filterSites()
+    })
+  })
+  
+  searchInput?.addEventListener('input', (e) => {
+    currentSearch = e.target.value.toLowerCase().trim()
+    filterSites()
+  })
+</script>
