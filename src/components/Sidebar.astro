@@ -1,40 +1,43 @@
 ---
-const categories = [
-  { id: 'all', name: '全部', icon: '🏠' },
-  { id: '大模型官网', name: '大模型官网', icon: '🌐' },
-  { id: 'API 提供商', name: 'API 提供商', icon: '🔌' },
-  { id: '聚合平台', name: '聚合平台', icon: '🔀' },
-  { id: '开源社区', name: '开源社区', icon: '👥' },
-  { id: 'Product Hunt AI', name: 'Product Hunt AI', icon: '🚀' },
-  { id: '其他', name: '其他', icon: '📦' },
-]
+interface Category {
+  id: string
+  name: string
+  icon: string
+}
 
 interface Props {
   activeCategory: string
+  categories: Category[]
 }
 
-const { activeCategory } = Astro.props
+const { activeCategory, categories } = Astro.props
+
+// 添加 "全部" 选项
+const allCategories = [
+  { id: 'all', name: '全部', icon: '🏠' },
+  ...categories
+]
 ---
 
-<button id="mobile-menu-btn" class="fixed top-4 left-4 z-30 p-2.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--color-card-hover)] transition-all duration-200 lg:hidden" aria-label="Toggle menu">
+<button id="mobile-menu-btn" class="fixed top-4 left-4 z-50 p-2.5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--color-card-hover)] transition-all duration-200 lg:hidden" aria-label="Toggle menu">
   <svg class="w-5 h-5 text-[var(--color-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
   </svg>
 </button>
 
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-20 hidden lg:hidden"></div>
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-30 hidden lg:hidden"></div>
 
-<aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-[var(--color-sidebar-bg)] border-r border-[var(--color-border)] p-4 overflow-y-auto z-20 transition-transform duration-300 -translate-x-full lg:translate-x-0">
-  <div class="mb-6">
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-[var(--color-sidebar-bg)] border-r border-[var(--color-border)] p-4 overflow-y-auto z-40 transition-transform duration-300 -translate-x-full lg:translate-x-0 lg:top-16 lg:h-[calc(100vh-4rem)]">
+  <div class="mb-6 lg:hidden">
     <h1 class="text-xl font-bold text-[var(--color-text)]">AI Dashboard</h1>
     <p class="text-sm text-[var(--color-text-secondary)] mt-1">发现优秀 AI 资源</p>
   </div>
   
   <nav class="space-y-1">
-    {categories.map((cat) => (
+    {allCategories.map((cat) => (
       <button
         data-category={cat.id}
-        class="sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 {activeCategory === cat.id ? 'bg-[var(--color-accent)] text-white' : 'text-[var(--color-text)] hover:bg-[var(--color-surface)]'}"
+        class={`sidebar-item w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${activeCategory === cat.id ? 'bg-[var(--color-accent)] text-white shadow-sm' : 'text-[var(--color-text)] hover:bg-[var(--color-surface)]'}`}
       >
         <span class="text-lg">{cat.icon}</span>
         <span class="font-medium">{cat.name}</span>

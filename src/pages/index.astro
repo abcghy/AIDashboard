@@ -1,40 +1,74 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
 import Sidebar from '../components/Sidebar.astro'
 import SearchBar from '../components/SearchBar.astro'
 import SiteCard from '../components/SiteCard.astro'
 import sites from '../data/sites.json'
 
+// 定义分类顺序和图标
+const categories = [
+  { id: '大模型官网', name: '大模型官网', icon: '🌐' },
+  { id: 'API 提供商', name: 'API 提供商', icon: '🔌' },
+  { id: '聚合平台', name: '聚合平台', icon: '🔀' },
+  { id: '开源社区', name: '开源社区', icon: '👥' },
+  { id: 'Product Hunt AI', name: 'Product Hunt AI', icon: '🚀' },
+  { id: '其他', name: '其他', icon: '📦' },
+]
+
+// 按分类分组网站
+const sitesByCategory = categories.reduce((acc, cat) => {
+  acc[cat.id] = sites.filter(s => s.category === cat.id)
+  return acc
+}, {} as Record<string, typeof sites>)
+
 const categoryCounts = {
   all: sites.length,
-  '大模型官网': sites.filter(s => s.category === '大模型官网').length,
-  'API 提供商': sites.filter(s => s.category === 'API 提供商').length,
-  '聚合平台': sites.filter(s => s.category === '聚合平台').length,
-  '开源社区': sites.filter(s => s.category === '开源社区').length,
-  'Product Hunt AI': sites.filter(s => s.category === 'Product Hunt AI').length,
-  '其他': sites.filter(s => s.category === '其他').length,
+  ...categories.reduce((acc, cat) => {
+    acc[cat.id] = sitesByCategory[cat.id].length
+    return acc
+  }, {} as Record<string, number>)
 }
 ---
 
 <Layout title="AI Dashboard - AI 网站导航">
-  <Sidebar activeCategory="all" />
+  <Header siteCount={sites.length}>
+    <SearchBar slot="search" value="" />
+  </Header>
   
-  <main class="lg:ml-64 min-h-screen p-4 pt-16 lg:pt-4 lg:p-6">
-    <header class="mb-6">
-      <div class="flex items-center justify-between gap-4 flex-wrap">
-        <SearchBar value="" />
-        <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-          <span id="site-count">{sites.length}</span>
-          <span>个网站</span>
-        </div>
-      </div>
-    </header>
-    
-    <div id="sites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {sites.map((site) => (
-        <div data-category={site.category} data-name={site.name} data-models={site.models.join(',')} data-description={site.description.toLowerCase()}>
-          <SiteCard site={site} />
-        </div>
+  <Sidebar activeCategory="all" categories={categories} />
+  
+  <main class="lg:ml-64 min-h-screen">
+    <div class="p-4 lg:p-6 space-y-10">
+      {categories.map((category) => (
+        sitesByCategory[category.id].length > 0 && (
+          <section id={`category-${category.id}`} class="category-section">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-1 h-6 rounded-full bg-[var(--color-accent)]"></div>
+              <h2 class="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+                <span>{category.icon}</span>
+                <span>{category.name}</span>
+              </h2>
+              <span class="text-sm text-[var(--color-text-secondary)] bg-[var(--color-surface)] px-2 py-0.5 rounded-full">
+                {sitesByCategory[category.id].length}
+              </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {sitesByCategory[category.id].map((site) => (
+                <div 
+                  data-category={site.category} 
+                  data-name={site.name} 
+                  data-models={site.models.join(',')} 
+                  data-description={site.description.toLowerCase()}
+                  class="site-item"
+                >
+                  <SiteCard site={site} />
+                </div>
+              ))}
+            </div>
+          </section>
+        )
       ))}
     </div>
     
@@ -45,48 +79,61 @@ const categoryCounts = {
 </Layout>
 
 <script define:vars={{ categoryCounts }}>
-  const sitesGrid = document.getElementById('sites-grid')
-  const noResults = document.getElementById('no-results')
-  const siteCount = document.getElementById('site-count')
   const searchInput = document.getElementById('search-input')
   const sidebarItems = document.querySelectorAll('.sidebar-item')
+  const noResults = document.getElementById('no-results')
+  const siteItems = document.querySelectorAll('.site-item')
+  const headerSiteCount = document.getElementById('header-site-count')
   
-  let currentCategory = 'all'
   let currentSearch = ''
   
   function filterSites() {
-    const cards = sitesGrid.querySelectorAll('[data-category]')
     let visibleCount = 0
+    const sections = document.querySelectorAll('.category-section')
     
-    cards.forEach(card => {
-      const category = card.dataset.category
-      const name = card.dataset.name.toLowerCase()
-      const models = card.dataset.models.toLowerCase()
-      const description = card.dataset.description
+    siteItems.forEach(item => {
+      const name = item.dataset.name.toLowerCase()
+      const models = item.dataset.models.toLowerCase()
+      const description = item.dataset.description
       
-      const categoryMatch = currentCategory === 'all' || category === currentCategory
       const searchMatch = currentSearch === '' || 
         name.includes(currentSearch) || 
         models.includes(currentSearch) ||
         description.includes(currentSearch)
       
-      if (categoryMatch && searchMatch) {
-        card.classList.remove('hidden')
+      if (searchMatch) {
+        item.classList.remove('hidden')
+        item.classList.add('block')
         visibleCount++
       } else {
-        card.classList.add('hidden')
+        item.classList.add('hidden')
+        item.classList.remove('block')
       }
     })
     
-    siteCount.textContent = visibleCount
+    // 隐藏空 section
+    sections.forEach(section => {
+      const visibleItems = section.querySelectorAll('.site-item:not(.hidden)')
+      if (visibleItems.length === 0) {
+        section.classList.add('hidden')
+      } else {
+        section.classList.remove('hidden')
+      }
+    })
+    
+    if (headerSiteCount) {
+      headerSiteCount.textContent = visibleCount
+    }
+    
     noResults.classList.toggle('hidden', visibleCount > 0)
   }
   
+  // 侧边栏点击滚动
   sidebarItems.forEach(item => {
     item.addEventListener('click', () => {
       const category = item.dataset.category
-      currentCategory = category
       
+      // 更新激活状态
       sidebarItems.forEach(i => {
         i.classList.remove('bg-[var(--color-accent)]', 'text-white')
         i.classList.add('text-[var(--color-text)]', 'hover:bg-[var(--color-surface)]')
@@ -95,10 +142,30 @@ const categoryCounts = {
       item.classList.add('bg-[var(--color-accent)]', 'text-white')
       item.classList.remove('text-[var(--color-text)]', 'hover:bg-[var(--color-surface)]')
       
-      filterSites()
+      // 滚动到对应 section
+      if (category !== 'all') {
+        const targetSection = document.getElementById(`category-${category}`)
+        if (targetSection) {
+          const headerOffset = 80
+          const elementPosition = targetSection.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      } else {
+        // "全部" 滚动到顶部
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
     })
   })
   
+  // 搜索
   searchInput?.addEventListener('input', (e) => {
     currentSearch = e.target.value.toLowerCase().trim()
     filterSites()

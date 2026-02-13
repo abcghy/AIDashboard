@@ -19,8 +19,11 @@ const { site } = Astro.props
   href={site.url}
   target="_blank"
   rel="noopener noreferrer"
-  class="site-card block p-5 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl hover:bg-[var(--color-card-hover)] hover:border-[var(--color-accent)] hover:shadow-lg transition-all duration-200 group"
+  class="site-card block p-5 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl relative overflow-hidden group hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
 >
+  <!-- Accent border on left -->
+  <div class="absolute left-0 top-0 bottom-0 w-1 bg-[var(--color-accent)] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-200"></div>
+  
   <div class="flex items-start justify-between gap-3">
     <div class="flex-1 min-w-0">
       <h3 class="font-semibold text-lg text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
@@ -32,7 +35,7 @@ const { site } = Astro.props
       {site.models.length > 0 && (
         <div class="flex flex-wrap gap-1.5 mt-3">
           {site.models.slice(0, 4).map((model) => (
-            <span class="model-tag px-2 py-0.5 text-xs bg-[var(--color-surface)] text-[var(--color-text-secondary)] rounded-md border border-[var(--color-border)]">
+            <span class="model-tag px-2 py-0.5 text-xs bg-[var(--color-surface)] text-[var(--color-text-secondary)] rounded-md border border-[var(--color-border)] group-hover:border-[var(--color-accent)]/30 transition-colors">
               {model}
             </span>
           ))}
