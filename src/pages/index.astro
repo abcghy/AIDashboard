@@ -169,4 +169,15 @@ const categoryCounts = {
     currentSearch = e.target.value.toLowerCase().trim()
     filterSites()
   })
+  
+  // 键盘快捷键：Ctrl+K (Windows/Linux) 或 Cmd+K (Mac) 聚焦搜索框
+  document.addEventListener('keydown', (e) => {
+    // 检测是否为快捷键组合 (Ctrl+K 或 Cmd+K)
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault()
+      searchInput?.focus()
+      // 选中已有文本
+      searchInput?.select()
+    }
+  })
 </script>

@@ -20,6 +20,18 @@ const { value } = Astro.props
     id="search-input"
     placeholder="搜索网站或模型..."
     value={value}
-    class="w-full pl-10 pr-4 py-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl text-[var(--color-text)] placeholder-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-200"
+    class="w-full pl-10 pr-16 py-2.5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl text-[var(--color-text)] placeholder-[var(--color-text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent transition-all duration-200"
   />
+  <kbd id="search-kbd" class="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded-md text-[10px] font-mono text-[var(--color-text-secondary)] shadow-sm">
+    <span id="kbd-mod">⌘</span><span>K</span>
+  </kbd>
 </div>
+
+<script>
+  // 检测操作系统显示对应的修饰键
+  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  const kbdMod = document.getElementById('kbd-mod');
+  if (kbdMod && !isMac) {
+    kbdMod.textContent = 'Ctrl';
+  }
+</script>
