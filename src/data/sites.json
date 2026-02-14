@@ -284,7 +284,7 @@
     "name": "Cherry Studio",
     "url": "https://cherry-ai.com",
     "description": "全能 AI 助手平台，支持多模型对话、知识库、AI 绘画",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Windows", "Mac", "Linux"]
   },
   {
@@ -292,7 +292,7 @@
     "name": "ChatWise",
     "url": "https://chatwise.app",
     "description": "高性能 AI 聊天客户端，注重隐私保护",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Windows", "Mac"]
   },
   {
@@ -300,7 +300,7 @@
     "name": "Chatbox AI",
     "url": "https://chatboxai.app",
     "description": "全平台 AI 客户端，办公学习好助手",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Windows", "Mac", "Linux", "iOS", "Android", "Web"]
   },
   {
@@ -308,7 +308,7 @@
     "name": "Ollama",
     "url": "https://ollama.com",
     "description": "本地运行大语言模型，开源免费",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Windows", "Mac", "Linux"]
   },
   {
@@ -316,7 +316,7 @@
     "name": "LM Studio",
     "url": "https://lmstudio.ai",
     "description": "本地 AI 模型运行工具，图形界面友好",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Windows", "Mac", "Linux"]
   },
   {
@@ -324,7 +324,63 @@
     "name": "NextChat",
     "url": "https://app.nextchat.dev",
     "description": "开源 AI 聊天平台，一键部署私人 ChatGPT",
-    "category": "其他",
+    "category": "AI 客户端",
     "models": ["Web", "Windows", "Mac", "Linux", "iOS", "Android"]
+  },
+  {
+    "id": "librechat",
+    "name": "LibreChat",
+    "url": "https://librechat.ai",
+    "description": "开源 AI 聊天平台，支持多模型和插件",
+    "category": "AI 客户端",
+    "models": ["Web", "Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "lobechat",
+    "name": "LobeChat",
+    "url": "https://lobechat.com",
+    "description": "现代化开源 AI 聊天客户端，高颜值界面",
+    "category": "AI 客户端",
+    "models": ["Web", "Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "openwebui",
+    "name": "Open WebUI",
+    "url": "https://openwebui.com",
+    "description": "开源 AI 界面，支持离线运行和本地模型",
+    "category": "AI 客户端",
+    "models": ["Web"]
+  },
+  {
+    "id": "anythingllm",
+    "name": "AnythingLLM",
+    "url": "https://anythingllm.com",
+    "description": "全能本地 AI 文档聊天工具，支持知识库",
+    "category": "AI 客户端",
+    "models": ["Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "jan",
+    "name": "Jan",
+    "url": "https://jan.ai",
+    "description": "开源 ChatGPT 替代品，100% 本地运行",
+    "category": "AI 客户端",
+    "models": ["Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "gpt4all",
+    "name": "GPT4All",
+    "url": "https://gpt4all.io",
+    "description": "开源本地大语言模型聊天软件",
+    "category": "AI 客户端",
+    "models": ["Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "msty",
+    "name": "Msty",
+    "url": "https://msty.app",
+    "description": "本地 AI 模型管理器，简化模型使用",
+    "category": "AI 客户端",
+    "models": ["Windows", "Mac", "Linux"]
   }
 ]
