@@ -382,5 +382,13 @@
     "description": "本地 AI 模型管理器，简化模型使用",
     "category": "AI 客户端",
     "models": ["Windows", "Mac", "Linux"]
+  },
+  {
+    "id": "relaypulse",
+    "name": "RelayPulse",
+    "url": "https://relaypulse.top/",
+    "description": "监控第三方 API 集合服务商的状态和可用性",
+    "category": "其他",
+    "models": []
   }
 ]
